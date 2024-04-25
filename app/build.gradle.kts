@@ -79,6 +79,8 @@ dependencies {
     //Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.paging)
+
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)

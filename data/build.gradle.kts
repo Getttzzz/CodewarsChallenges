@@ -47,6 +47,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
+    //Network
+    api(libs.retrofit)
+    api(libs.retrofit.converter.gson)
+    api(libs.okhttp.logging.interceptor)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
