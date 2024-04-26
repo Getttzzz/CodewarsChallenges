@@ -47,7 +47,11 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            //Next two lines prevents this build fail
+            //Execution failed for task ':app:mergeDebugAndroidTestJavaResource'
+            excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/LICENSE-notice.md")
         }
         jniLibs {
             useLegacyPackaging = true // this is needed for Mockk library in order to work under androidTest
