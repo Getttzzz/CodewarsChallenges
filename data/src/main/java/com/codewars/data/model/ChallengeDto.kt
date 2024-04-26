@@ -15,11 +15,11 @@ data class ChallengeDto(
     @SerializedName("id")
     val id: String,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("completedLanguages")
-    val completedLanguages: List<String>,
+    val completedLanguages: List<String>?,
     @SerializedName("completedAt")
-    val completedAt: String,
+    val completedAt: String?,
 )
 
 internal fun List<ChallengeDto>.toDomain(): List<Challenge> {
@@ -29,8 +29,8 @@ internal fun List<ChallengeDto>.toDomain(): List<Challenge> {
 internal fun ChallengeDto.toDomain(): Challenge {
     return Challenge(
         id = id,
-        name = name,
-        completedLanguages = completedLanguages,
-        completedAt = completedAt,
+        name = name.orEmpty(),
+        completedLanguages = completedLanguages.orEmpty(),
+        completedAt = completedAt.orEmpty(),
     )
 }

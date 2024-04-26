@@ -25,13 +25,13 @@ class ChallengesPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Challenge> {
-        val page = params.key ?: STARTING_PAGE
+        val currentPage = params.key ?: STARTING_PAGE
 
         return runCatching {
             getChallengesUseCase(
                 GetChallengesUseCase.Params(
                     userName = userName,
-                    page = page,
+                    page = currentPage,
                 )
             )
                 .filter { domainResult -> domainResult !is DomainResult.Loading }
@@ -40,13 +40,19 @@ class ChallengesPagingSource(
                 .first()
         }.fold(
             onSuccess = { paginatedData ->
+                val prevKey = prevKey(currentPage)
+                val nextKey = paginatedData.nextKey(currentPage)
+                println("GETZ.ChallengesPagingSource.load --> Success: paginatedData.data.size=${paginatedData.data.size} prevKey=$prevKey currentPage=$currentPage nextKey=$nextKey")
                 LoadResult.Page(
                     data = paginatedData.data,
-                    prevKey = prevKey(page),
-                    nextKey = paginatedData.nextKey(page)
+                    prevKey = prevKey,
+                    nextKey = nextKey,
                 )
             },
-            onFailure = { exception -> LoadResult.Error(exception) },
+            onFailure = { exception ->
+                println("GETZ.ChallengesPagingSource.load --> Failure: currentPage=$currentPage exception=$exception")
+                LoadResult.Error(exception)
+            },
         )
     }
 
