@@ -1,7 +1,7 @@
 package com.codewars.codewarschallenges.di
 
-import com.codewars.codewarschallenges.ChallengesPager
-import com.codewars.codewarschallenges.MainViewModel
+import com.codewars.codewarschallenges.ui.challenges.paging.ChallengesPager
+import com.codewars.codewarschallenges.ui.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

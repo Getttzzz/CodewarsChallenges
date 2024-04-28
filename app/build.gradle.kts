@@ -91,6 +91,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
+    //Wonderful navigation
+    ksp(libs.compose.destinations.ksp)
+    implementation(libs.compose.destinations.animationes.core)
+
     //Tests
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

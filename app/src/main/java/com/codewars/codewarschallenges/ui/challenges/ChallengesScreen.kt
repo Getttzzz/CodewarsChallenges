@@ -1,8 +1,5 @@
-package com.codewars.codewarschallenges
+package com.codewars.codewarschallenges.ui.challenges
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,41 +8,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
+import androidx.paging.LoadState.Loading
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.codewars.codewarschallenges.ui.components.ChallengeItem
+import com.codewars.codewarschallenges.ui.MainViewModel
 import com.codewars.codewarschallenges.ui.components.CircularProgressHorizontallyCentered
 import com.codewars.codewarschallenges.ui.components.CodewarsAppBar
-import com.codewars.codewarschallenges.ui.theme.CodewarsChallengesTheme
 import com.codewars.domain.model.Challenge
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            CodewarsChallengesTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Main(userName = "wichu")
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun Main(
+fun ChallengesScreen(
     userName: String,
     viewModel: MainViewModel = koinViewModel { parametersOf(userName) }
 ) {
@@ -71,15 +49,18 @@ fun Main(
                 state = lazyColumnState,
                 contentPadding = PaddingValues(all = 8.dp),
             ) {
-                if (challenges.loadState.refresh is LoadState.Loading) {
+                if (challenges.loadState.refresh is Loading) {
                     item { CircularProgressHorizontallyCentered() }
                 }
                 items(count = challenges.itemCount) { i ->
                     challenges[i]?.let { challenge ->
-                        ChallengeItem(challenge)
+                        ChallengeItem(challenge) { clickedItemId ->
+                            //todo open Challenge Details Screen
+                            println("GETZ.ChallengesScreen --> clickedItemId=${clickedItemId}")
+                        }
                     }
                 }
-                if (challenges.loadState.append is LoadState.Loading) {
+                if (challenges.loadState.append is Loading) {
                     item { CircularProgressHorizontallyCentered() }
                 }
             }

@@ -1,4 +1,4 @@
-package com.codewars.codewarschallenges
+package com.codewars.codewarschallenges.ui.challenges.paging
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

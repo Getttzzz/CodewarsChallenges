@@ -1,5 +1,6 @@
-package com.codewars.codewarschallenges.ui.components
+package com.codewars.codewarschallenges.ui.challenges
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -30,11 +31,12 @@ import com.codewars.domain.model.Challenge
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ChallengeItem(challenge: Challenge) {
+fun ChallengeItem(challenge: Challenge, onItemClicked: (id: String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
+            .clickable(onClick = { onItemClicked(challenge.id) })
     ) {
         Text(
             modifier = Modifier
@@ -85,6 +87,6 @@ fun ChallengeItem(challenge: Challenge) {
 @Composable
 fun ChallengeItemPreview() {
     CodewarsChallengesTheme {
-        ChallengeItem(challenge = DummyChallenge)
+        ChallengeItem(challenge = DummyChallenge) {}
     }
 }
