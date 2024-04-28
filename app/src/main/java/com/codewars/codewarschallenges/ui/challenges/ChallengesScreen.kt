@@ -15,17 +15,25 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState.Loading
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.codewars.codewarschallenges.ui.MainViewModel
 import com.codewars.codewarschallenges.ui.components.CircularProgressHorizontallyCentered
 import com.codewars.codewarschallenges.ui.components.CodewarsAppBar
+import com.codewars.codewarschallenges.ui.destinations.ChallengeDetailsScreenDestination
 import com.codewars.domain.model.Challenge
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+private const val USER_NAME = "wichu" // 1946 challenges; 10 pages; 200 items per page
+
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun ChallengesScreen(
-    userName: String,
-    viewModel: MainViewModel = koinViewModel { parametersOf(userName) }
+    navigator: DestinationsNavigator,
+    userName: String = USER_NAME,
+    viewModel: ChallengesViewModel = koinViewModel { parametersOf(userName) }
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -57,6 +65,7 @@ fun ChallengesScreen(
                         ChallengeItem(challenge) { clickedItemId ->
                             //todo open Challenge Details Screen
                             println("GETZ.ChallengesScreen --> clickedItemId=${clickedItemId}")
+                            navigator.navigate(ChallengeDetailsScreenDestination(clickedItemId))
                         }
                     }
                 }
