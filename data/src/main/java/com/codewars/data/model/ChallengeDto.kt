@@ -29,7 +29,7 @@ internal fun List<ChallengeDto>.toDomain(): List<Challenge> {
 internal fun ChallengeDto.toDomain(): Challenge {
     return Challenge(
         id = id,
-        name = name.orEmpty(),
+        name = name ?: "Unnamed",
         completedLanguages = completedLanguages.orEmpty(),
         completedAt = completedAt.orEmpty(),
     )

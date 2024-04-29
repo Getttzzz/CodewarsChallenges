@@ -1,9 +1,11 @@
 package com.codewars.codewarschallenges.ui.challangedetails
 
 import androidx.lifecycle.ViewModel
+import com.codewars.domain.usecase.GetChallengeDetailsUseCase
 
-class ChallengeDetailsViewModel : ViewModel() {
-    init {
-        println("GETZ.ChallengeDetailsViewModel.init --> hash=${this.hashCode()}")
-    }
+class ChallengeDetailsViewModel(
+    challengeId: String,
+    getChallengeDetailsUseCase: GetChallengeDetailsUseCase,
+) : ViewModel() {
+
 }

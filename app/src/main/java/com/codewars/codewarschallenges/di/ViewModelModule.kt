@@ -16,7 +16,10 @@ val viewModelModule = module {
         )
     }
 
-    viewModel {
-        ChallengeDetailsViewModel()
+    viewModel { params ->
+        ChallengeDetailsViewModel(
+            challengeId = params.get(),
+            getChallengeDetailsUseCase = get()
+        )
     }
 }

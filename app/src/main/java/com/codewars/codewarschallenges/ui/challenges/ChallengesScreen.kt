@@ -25,7 +25,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
-private const val USER_NAME = "wichu" // 1946 challenges; 10 pages; 200 items per page
+const val USER_NAME = "wichu" // 1946 challenges; 10 pages; 200 items per page
 
 @RootNavGraph(start = true)
 @Destination
@@ -63,8 +63,6 @@ fun ChallengesScreen(
                 items(count = challenges.itemCount) { i ->
                     challenges[i]?.let { challenge ->
                         ChallengeItem(challenge) { clickedItemId ->
-                            //todo open Challenge Details Screen
-                            println("GETZ.ChallengesScreen --> clickedItemId=${clickedItemId}")
                             navigator.navigate(ChallengeDetailsScreenDestination(clickedItemId))
                         }
                     }

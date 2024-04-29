@@ -1,9 +1,11 @@
 package com.codewars.data.repository
 
 import com.codewars.data.api.CodewarsApi
-import com.codewars.data.model.ChallengeResponse
+import com.codewars.data.model.ChallengeDetailsResponse
+import com.codewars.data.model.ChallengesResponse
 import com.codewars.data.model.toDomain
 import com.codewars.domain.model.Challenge
+import com.codewars.domain.model.ChallengeDetails
 import com.codewars.domain.model.PaginatedData
 import com.codewars.domain.repository.ChallengeRepository
 import kotlinx.coroutines.flow.Flow
@@ -21,5 +23,12 @@ class ChallengeRepositoryImpl(private val remoteApi: CodewarsApi) : ChallengeRep
             page = page,
         )
         emit(response)
-    }.map(ChallengeResponse::toDomain)
+    }.map(ChallengesResponse::toDomain)
+
+    override fun getChallengeDetails(
+        challengeId: String,
+    ): Flow<ChallengeDetails> = flow {
+        val response = remoteApi.getChallengeDetails(challengeId)
+        emit(response)
+    }.map(ChallengeDetailsResponse::toDomain)
 }

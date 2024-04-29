@@ -5,7 +5,7 @@ import com.codewars.domain.model.PaginatedData
 import com.google.gson.annotations.SerializedName
 
 
-data class ChallengeResponse(
+data class ChallengesResponse(
     @SerializedName("totalPages")
     val totalPages: Int,
     @SerializedName("totalItems")
@@ -14,10 +14,12 @@ data class ChallengeResponse(
     val data: List<ChallengeDto>?,
 )
 
-internal fun ChallengeResponse.toDomain(): PaginatedData<Challenge> {
+internal fun ChallengesResponse.toDomain(): PaginatedData<Challenge> {
     return PaginatedData(
         data = data?.toDomain().orEmpty(),
         totalItems = totalItems,
         totalPages = totalPages,
     )
 }
+
+
