@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CodewarsChallenges</string>
     <string name="navigate_back">Navigate back</string>
+    <string name="challenge_details">Challenge details</string>
 </resources>

@@ -1,7 +1,21 @@
 package com.codewars.codewarschallenges.ui.challangedetails
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.codewars.codewarschallenges.R.string
+import com.codewars.codewarschallenges.ui.components.CircularProgressHorizontallyCentered
+import com.codewars.codewarschallenges.ui.components.CodewarsAppBar
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
@@ -14,5 +28,46 @@ fun ChallengeDetailsScreen(
     challengeId: String,
     viewModel: ChallengeDetailsViewModel = koinViewModel { parametersOf(challengeId) }
 ) {
-    Text(text = "This is details screen; challengeId=$challengeId")
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            CodewarsAppBar(
+                modifier = Modifier.fillMaxWidth(),
+                title = stringResource(string.challenge_details),
+                showNavigationIcon = true,
+                onBackClicked = { navigator.navigateUp() }
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            val state = viewModel.state
+            if (state.isLoading) {
+                CircularProgressHorizontallyCentered()
+            }
+            if (state.error != null) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        textAlign = TextAlign.Center,
+                        text = state.error.message.orEmpty(),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+            if (state.challengeDetails != null) {
+                Text(text = state.challengeDetails.name.orEmpty())
+            }
+        }
+    }
+
 }
