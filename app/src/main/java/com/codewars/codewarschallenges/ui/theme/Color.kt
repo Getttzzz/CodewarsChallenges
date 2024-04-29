@@ -1,5 +1,6 @@
 package com.codewars.codewarschallenges.ui.theme
 
+import android.hardware.lights.Light
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -18,16 +19,31 @@ val CodewarsMainColor = Color(0xFFF05656)
 //4) purple (1-2 kyu),
 //5) black (1-4 dan),
 //6) red (5-8 dan).
-val RankWhite = Color(0xFFEFDFB7)
-val RankYellow = Color(0xFFFFEB3B)
-val RankBlue = Color(0xFF1976D2)
-val RankPurple = Color(0xFF512DA8)
-val RankBlack = Color(0xFF272727)
-val RankRed = Color(0xFFF05656)
+val DarkRankWhite = Color(0xFF_EFDFB7)
+val DarkRankYellow = Color(0xFF_FFEB3B)
+val DarkRankBlue = Color(0xFF_1976D2)
+val DarkRankPurple = Color(0xFF_512DA8)
+val DarkRankBlack = Color(0xFF_2E2929)
+val DarkRankRed = Color(0xFF_D32F2F)
 
-val RankWhiteBackground = Color(0x25EFDFB7)
-val RankYellowBackground = Color(0x25FFEB3B)
-val RankBlueBackground = Color(0x251976D2)
-val RankPurpleBackground = Color(0x25512DA8)
-val RankBlackBackground = Color(0x25272727)
-val RankRedBackground = Color(0x25F05656)
+val DarkRankWhiteBackground = Color(0x25_EFDFB7)
+val DarkRankYellowBackground = Color(0x25_FFEB3B)
+val DarkRankBlueBackground = Color(0x25_1976D2)
+val DarkRankPurpleBackground = Color(0x25_512DA8)
+val DarkRankBlackBackground = Color(0x25_2E2929)
+val DarkRankRedBackground = Color(0x25_D32F2F)
+
+
+val LightRankWhite = Color(0xFF_979797)
+val LightRankYellow = Color(0xFF_F9A825)
+val LightRankBlue = Color(0xFF_1565C0)
+val LightRankPurple = Color(0xFF_4527A0)
+val LightRankBlack = Color(0xFF_272727)
+val LightRankRed = Color(0xFF_C62828)
+
+val LightRankWhiteBackground = Color(0x25_979797)
+val LightRankYellowBackground = Color(0x25_F9A825)
+val LightRankBlueBackground = Color(0x25_1565C0)
+val LightRankPurpleBackground = Color(0x25_4527A0)
+val LightRankBlackBackground = Color(0x25_272727)
+val LightRankRedBackground = Color(0x25_C62828)

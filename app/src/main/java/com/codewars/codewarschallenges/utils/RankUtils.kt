@@ -1,18 +1,30 @@
 package com.codewars.codewarschallenges.utils
 
 import androidx.compose.ui.graphics.Color
-import com.codewars.codewarschallenges.ui.theme.RankBlack
-import com.codewars.codewarschallenges.ui.theme.RankBlackBackground
-import com.codewars.codewarschallenges.ui.theme.RankBlue
-import com.codewars.codewarschallenges.ui.theme.RankBlueBackground
-import com.codewars.codewarschallenges.ui.theme.RankPurple
-import com.codewars.codewarschallenges.ui.theme.RankPurpleBackground
-import com.codewars.codewarschallenges.ui.theme.RankRed
-import com.codewars.codewarschallenges.ui.theme.RankRedBackground
-import com.codewars.codewarschallenges.ui.theme.RankWhite
-import com.codewars.codewarschallenges.ui.theme.RankWhiteBackground
-import com.codewars.codewarschallenges.ui.theme.RankYellow
-import com.codewars.codewarschallenges.ui.theme.RankYellowBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankBlack
+import com.codewars.codewarschallenges.ui.theme.DarkRankBlackBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankBlue
+import com.codewars.codewarschallenges.ui.theme.DarkRankBlueBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankPurple
+import com.codewars.codewarschallenges.ui.theme.DarkRankPurpleBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankRed
+import com.codewars.codewarschallenges.ui.theme.DarkRankRedBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankWhite
+import com.codewars.codewarschallenges.ui.theme.DarkRankWhiteBackground
+import com.codewars.codewarschallenges.ui.theme.DarkRankYellow
+import com.codewars.codewarschallenges.ui.theme.DarkRankYellowBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankBlack
+import com.codewars.codewarschallenges.ui.theme.LightRankBlackBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankBlue
+import com.codewars.codewarschallenges.ui.theme.LightRankBlueBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankPurple
+import com.codewars.codewarschallenges.ui.theme.LightRankPurpleBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankRed
+import com.codewars.codewarschallenges.ui.theme.LightRankRedBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankWhite
+import com.codewars.codewarschallenges.ui.theme.LightRankWhiteBackground
+import com.codewars.codewarschallenges.ui.theme.LightRankYellow
+import com.codewars.codewarschallenges.ui.theme.LightRankYellowBackground
 
 object RankUtils {
 
@@ -26,27 +38,58 @@ object RankUtils {
      * 5) black (1-4 dan),
      * 6) red (5-8 dan).
      * */
-    fun parseRankColor(color: String): Color {
+    fun parseDarkRankColor(color: String): Color {
         return when (color) {
-            "white" -> RankWhite
-            "yellow" -> RankYellow
-            "blue" -> RankBlue
-            "purple" -> RankPurple
-            "black" -> RankBlack
-            "red" -> RankRed
-            else -> RankWhite
+            WHITE -> DarkRankWhite
+            YELLOW -> DarkRankYellow
+            BLUE -> DarkRankBlue
+            PURPLE -> DarkRankPurple
+            BLACK -> DarkRankBlack
+            RED -> DarkRankRed
+            else -> DarkRankWhite
         }
     }
 
-    fun parseRankColorBackground(color: String): Color {
+    fun parseDarkRankColorBackground(color: String): Color {
         return when (color) {
-            "white" -> RankWhiteBackground
-            "yellow" -> RankYellowBackground
-            "blue" -> RankBlueBackground
-            "purple" -> RankPurpleBackground
-            "black" -> RankBlackBackground
-            "red" -> RankRedBackground
-            else -> RankWhiteBackground
+            WHITE -> DarkRankWhiteBackground
+            YELLOW -> DarkRankYellowBackground
+            BLUE -> DarkRankBlueBackground
+            PURPLE -> DarkRankPurpleBackground
+            BLACK -> DarkRankBlackBackground
+            RED -> DarkRankRedBackground
+            else -> DarkRankWhiteBackground
         }
     }
+
+    fun parseLightRankColor(color: String): Color {
+        return when (color) {
+            WHITE -> LightRankWhite
+            YELLOW -> LightRankYellow
+            BLUE -> LightRankBlue
+            PURPLE -> LightRankPurple
+            BLACK -> LightRankBlack
+            RED -> LightRankRed
+            else -> LightRankWhite
+        }
+    }
+
+    fun parseLightRankColorBackground(color: String): Color {
+        return when (color) {
+            WHITE -> LightRankWhiteBackground
+            YELLOW -> LightRankYellowBackground
+            BLUE -> LightRankBlueBackground
+            PURPLE -> LightRankPurpleBackground
+            BLACK -> LightRankBlackBackground
+            RED -> LightRankRedBackground
+            else -> LightRankWhiteBackground
+        }
+    }
+
+    const val WHITE = "white"
+    const val YELLOW = "yellow"
+    const val BLUE = "blue"
+    const val PURPLE = "purple"
+    const val BLACK = "black"
+    const val RED = "red"
 }
