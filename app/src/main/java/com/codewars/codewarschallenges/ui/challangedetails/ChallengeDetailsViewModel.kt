@@ -22,7 +22,6 @@ class ChallengeDetailsViewModel(
     init {
         viewModelScope.launch {
             getChallengeDetailsUseCase.invoke(challengeId).collect {
-                println("GETZ.ChallengeDetailsViewModel.collect --> result=$it")
                 state = when (it) {
                     is Loading -> state.copy(challengeDetails = null, isLoading = true, error = null)
                     is Success -> state.copy(challengeDetails = it.value, isLoading = false, error = null)
