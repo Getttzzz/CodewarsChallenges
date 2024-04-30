@@ -5,7 +5,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Done
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -80,7 +86,7 @@ fun ChallengeDetailsScreen(
 }
 
 @Composable
-fun ChallengeDetailsContent(challengeDetails: ChallengeDetails) {
+fun ChallengeDetailsContent(challenge: ChallengeDetails) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -91,18 +97,56 @@ fun ChallengeDetailsContent(challengeDetails: ChallengeDetails) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             RankView(
-                modifier = Modifier.padding(16.dp),
-                rank = challengeDetails.rank
+                modifier = Modifier.padding(top = 16.dp, start = 16.dp, bottom = 16.dp),
+                rank = challenge.rank
             )
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(horizontal = 16.dp)
                     .weight(1f),
-                text = challengeDetails.name,
+                text = challenge.name,
                 maxLines = 2,
                 style = MaterialTheme.typography.titleLarge,
                 overflow = TextOverflow.Ellipsis,
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                modifier = Modifier.size(16.dp),
+                imageVector = Icons.Outlined.Star,
+                contentDescription = stringResource(string.star_icon)
+            )
+            Text(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(start = 4.dp),
+                text = challenge.totalStars.toString(),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+
+            Icon(
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .size(16.dp),
+                imageVector = Icons.Outlined.Done,
+                contentDescription = stringResource(string.attempts_icon)
+            )
+            Text(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(start = 4.dp),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                text = stringResource(string.total_attempts, challenge.totalCompleted, challenge.totalAttempts),
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }
@@ -112,6 +156,6 @@ fun ChallengeDetailsContent(challengeDetails: ChallengeDetails) {
 @Composable
 fun ChallengeDetailsScreenContentPreview() {
     CodewarsChallengesTheme {
-        ChallengeDetailsContent(challengeDetails = DummyChallengeDetails)
+        ChallengeDetailsContent(challenge = DummyChallengeDetails)
     }
 }

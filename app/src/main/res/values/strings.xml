@@ -2,4 +2,7 @@
     <string name="app_name">CodewarsChallenges</string>
     <string name="navigate_back">Navigate back</string>
     <string name="challenge_details">Challenge details</string>
+    <string name="attempts_icon">Attempts icon</string>
+    <string name="total_attempts">%d of %d completed</string>
+    <string name="star_icon">Star icon</string>
 </resources>
