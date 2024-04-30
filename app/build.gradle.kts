@@ -95,6 +95,8 @@ dependencies {
     ksp(libs.compose.destinations.ksp)
     implementation(libs.compose.destinations.animationes.core)
 
+    implementation(libs.markdown.view.compose)
+
     //Tests
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

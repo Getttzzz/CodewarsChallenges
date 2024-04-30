@@ -20,6 +20,8 @@ koin-compose = "3.5.6"
 
 compose-destinations = "1.10.2"
 
+markdown-compose = "2.0.0"
+
 appcompat = "1.6.1"
 material = "1.11.0"
 
@@ -55,6 +57,8 @@ koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = 
 
 compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "compose-destinations" }
 compose-destinations-animationes-core = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "compose-destinations" }
+
+markdown-view-compose = { module = "com.github.mukeshsolanki:MarkdownView-Android", version.ref = "markdown-compose"}
 
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-paging = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging-compose" }

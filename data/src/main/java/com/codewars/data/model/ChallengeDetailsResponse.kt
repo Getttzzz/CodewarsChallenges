@@ -100,7 +100,7 @@ internal fun ChallengeDetailsResponse.toDomain(): ChallengeDetails {
         url = url.orEmpty(),
         rank = Rank(
             id = rank?.id ?: -999,
-            name = rank?.name ?: "No name",
+            name = rank?.name ?: "? kyu",
             color = rank?.color ?: "No color",
         ),
         description = description ?: "No description",
