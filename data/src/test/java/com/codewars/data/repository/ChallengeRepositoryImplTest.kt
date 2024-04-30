@@ -15,7 +15,7 @@ import org.junit.Test
 class ChallengeRepositoryImplTest {
 
     private val api = mockk<CodewarsApi>()
-    private val repository: ChallengeRepository = ChallengeRepositoryImpl(api)
+    private val systemUnderTest: ChallengeRepository = ChallengeRepositoryImpl(api)
 
     @Test
     fun getChallenges() = runTest {
@@ -25,7 +25,7 @@ class ChallengeRepositoryImplTest {
             api.getChallenges(any(), any())
         } returns ChallengesResponseTestData
 
-        val actual = repository.getChallenges("wichu", 1)
+        val actual = systemUnderTest.getChallenges("wichu", 1)
             .first()
 
         Assert.assertEquals(expected, actual)
@@ -39,7 +39,7 @@ class ChallengeRepositoryImplTest {
             api.getChallengeDetails(any())
         } returns ChallengeDetailsResponseTestData
 
-        val actual = repository.getChallengeDetails("5949481f86420f59480000e7")
+        val actual = systemUnderTest.getChallengeDetails("5949481f86420f59480000e7")
             .first()
 
         Assert.assertEquals(expected, actual)
