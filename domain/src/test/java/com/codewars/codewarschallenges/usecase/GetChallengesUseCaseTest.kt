@@ -26,7 +26,7 @@ class GetChallengesUseCaseTest {
         every { repository.getChallenges(any(), any()) } returns flowOf(ChallengesPaginatedTestData)
         systemUnderTest(Params(userName = "wichu", page = 1)).test {
             val actual: DomainResult<PaginatedData<Challenge>> = awaitItem()
-            println("GETZ.result flow emits Loading --> actual=$actual")
+
             skipItems(count = 1)
             awaitComplete()
 
@@ -39,8 +39,10 @@ class GetChallengesUseCaseTest {
         every { repository.getChallenges(any(), any()) } returns flowOf(ChallengesPaginatedTestData)
         systemUnderTest(Params(userName = "wichu", page = 1)).test {
             skipItems(count = 1)
+
             val expected = DomainResult.Success(value = ChallengesPaginatedTestData)
             val actual: DomainResult<PaginatedData<Challenge>> = awaitItem()
+
             awaitComplete()
 
             Assert.assertEquals(expected, actual)
@@ -52,6 +54,7 @@ class GetChallengesUseCaseTest {
         every { repository.getChallenges(any(), any()) } returns flow { throw NullPointerException() }
         systemUnderTest(Params(userName = "wichu", page = 1)).test {
             skipItems(count = 1)
+
             val actual: DomainResult<PaginatedData<Challenge>> = awaitItem()
 
             awaitComplete()
