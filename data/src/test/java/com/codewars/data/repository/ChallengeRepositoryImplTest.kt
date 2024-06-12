@@ -10,12 +10,19 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
 
 class ChallengeRepositoryImplTest {
 
     private val api = mockk<CodewarsApi>()
-    private val systemUnderTest: ChallengeRepository = ChallengeRepositoryImpl(api)
+    lateinit var systemUnderTest: ChallengeRepository
+
+
+    @Before
+    fun before(){
+        systemUnderTest = ChallengeRepositoryImpl(api)
+    }
 
     @Test
     fun getChallenges() = runTest {

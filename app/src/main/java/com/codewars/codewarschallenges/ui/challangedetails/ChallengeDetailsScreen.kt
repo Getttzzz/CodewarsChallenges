@@ -23,6 +23,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -66,11 +68,11 @@ fun ChallengeDetailsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val state = viewModel.state
-            if (state.isLoading) {
+            val readOnlyState by viewModel.readOnlyState.collectAsState()
+            if (readOnlyState.isLoading) {
                 CircularProgressHorizontallyCentered()
             }
-            if (state.error != null) {
+            readOnlyState.error?.let { error ->
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -80,14 +82,14 @@ fun ChallengeDetailsScreen(
                             .fillMaxWidth()
                             .padding(16.dp),
                         textAlign = TextAlign.Center,
-                        text = state.error.message.orEmpty(),
+                        text = error.message.orEmpty(),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.error
                     )
                 }
             }
-            if (state.challengeDetails != null) {
-                ChallengeDetailsContent(state.challengeDetails)
+            readOnlyState.challengeDetails?.let { details ->
+                ChallengeDetailsContent(details)
             }
         }
     }
