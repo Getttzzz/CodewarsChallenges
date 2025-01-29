@@ -1,12 +1,12 @@
 package com.codewars.codewarschallenges.ui.challenges
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.codewars.codewarschallenges.ui.challenges.paging.ChallengesPager
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -16,14 +16,14 @@ class ChallengesViewModel(challengesPager: ChallengesPager) : ViewModel() {
         .catch { error -> onError(error) }
         .cachedIn(viewModelScope)
 
-    var error by mutableStateOf<Throwable?>(value = null)
-        private set
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error = _error.asStateFlow()
 
     fun onError(throwable: Throwable) {
-        viewModelScope.launch { error = throwable }
+        viewModelScope.launch { _error.value = throwable }
     }
 
     fun onErrorConsumed() {
-        viewModelScope.launch { error = null }
+        viewModelScope.launch { _error.value = null }
     }
 }

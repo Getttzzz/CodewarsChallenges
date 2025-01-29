@@ -12,6 +12,9 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -54,16 +57,15 @@ fun ChallengesScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val lazyColumnState: LazyListState = rememberLazyListState()
             val challenges: LazyPagingItems<Challenge> = viewModel.challenges.collectAsLazyPagingItems()
+            val error by viewModel.error.collectAsState()
 
-            viewModel.error?.let {
+            error?.let {
                 Toast.makeText(LocalContext.current, it.message, Toast.LENGTH_SHORT).show()
                 viewModel.onErrorConsumed()
             }
 
             LazyColumn(
-                state = lazyColumnState,
                 contentPadding = PaddingValues(all = 8.dp),
             ) {
                 if (challenges.loadState.refresh is Loading) {
